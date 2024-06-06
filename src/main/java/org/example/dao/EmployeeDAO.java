@@ -82,10 +82,12 @@ public class EmployeeDAO {
         Class.forName("org.sqlite.JDBC");
         Connection conn = DriverManager.getConnection(URL);
         PreparedStatement st ;
-        if (filterDto != null && filterDto != null){
+        if (filterDto.getEmployeeId() != null && filterDto.getLimit() != null){
 st = conn.prepareStatement(SELECT_employees_WITH_ID_PAGINATION);
             st.setInt(1,filterDto.getEmployeeId());
-            st.setInt(2,filterDto.getLimit());} else if (filterDto.getEmployeeId()!=null) {
+            st.setInt(2,filterDto.getLimit());
+                   st.setInt(3,filterDto.getOffset());
+        } else if (filterDto.getEmployeeId()!=null) {
             st = conn.prepareStatement(SELECT_employees_WITH_ID);
             st.setInt(1,filterDto.getEmployeeId());
         } else if (filterDto.getLimit()!=null) {

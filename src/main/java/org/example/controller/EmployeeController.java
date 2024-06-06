@@ -47,27 +47,26 @@ public class EmployeeController {
 
     @GET
     @Path("{employees_id}")
-    public Employees getEmployee(@PathParam("employees_id") int employees_id) {
+    public Response getEmployee(@PathParam("employees_id") int employees_id) {
         try {
             Employees employees = dao.selectEmployees(employees_id);
 
             if (employees == null) {
                 throw new DataNotFoundException("employee with ID " + employees_id + " not found");
             }
-            EmployeeFilterDto dto = new EmployeeFilterDto();
+//            EmployeeFilterDto dto = new EmployeeFilterDto();
 //            dto.setJobId(employees.getJob_id());
 //            dto.setMaxSalary(employees.getMax_salary());
 //            dto.setMinSalary(employees.getMin_salary());
 //            dto.setJob_title(employees.getJob_title());
 //            addLink(dto);
 
-//            return Response.ok(dto).build();
+            return Response.ok(employees).build();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
         @DELETE
@@ -98,6 +97,9 @@ public class EmployeeController {
     @PUT
     @Path("{employees_id}")
     public void updateEmployees(@PathParam("employees_id") int employees_id, Employees employees) {
+
+
+
         try {
             employees.setEmployee_id(employees_id);
             dao.updateEmployees(employees);
@@ -105,4 +107,7 @@ public class EmployeeController {
             throw new RuntimeException(e);
         }
     }
+
+
+
 }
