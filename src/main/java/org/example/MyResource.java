@@ -7,6 +7,7 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.UriInfo;
+import org.example.dto.EmployeeIdDto;
 
 
 /**
@@ -47,4 +48,12 @@ public class MyResource {
 
         return "Got it! name "+username+", apiKey:"+apiKey;
     }
+    @GET
+    @Path("/employees/{empId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public EmployeeIdDto getDate(@PathParam("empId") EmployeeIdDto empId) {
+        return empId;
+    }
+
+
 }

@@ -142,4 +142,8 @@ public class Employees {
                 ", department_id=" + department_id +
                 '}';
     }
+
+
+    public void addLink(String string, String self) {
+    }
 }
